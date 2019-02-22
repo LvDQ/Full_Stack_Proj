@@ -1,10 +1,37 @@
 # Full_Stack_Proj
-estate estimation
+
+Estate Estimation by using Zillow datasets API
 
 
+### Environment:
+
+- Windows Version `Virtual Box` : Ubuntu 16.04 LTS, 2GB Memory
 
 
-### Dependency between sources:
+### Dependencies: 
+
+`how to install:`
+
+- using `apt-get install`: npm , node.js mongodb, 
+
+- using `npm`:  mongoose, client- sessions, password-hash, supervisor
+
+				Express: 
+				``` npm install -g express; npm install -g express-generator@4```
+
+### Show Appearance(Run)
+
+```
+	supervisor ./bin/www 
+
+```
+
+### Performance Test
+
+TBD...
+
+
+### Logics between sources:
 
 `./bin/www` is the entrance of web_server(creating) binding with localhost `port 3000`, this server require `app.js` to get into node logical level
 

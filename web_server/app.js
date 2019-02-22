@@ -1,5 +1,5 @@
 
-/* dependencies(manually installed): node.js,mongodb, mongoose, client- sessions
+/* dependencies(manually installed): node.js,mongodb, mongoose, client- sessions, password-hash
 
 */
 var createError = require('http-errors');
