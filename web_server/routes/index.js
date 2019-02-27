@@ -27,6 +27,9 @@ router.get('/',function(req,res,next){
 	
 })
 
+
+req reference: https://expressjs.com/zh-cn/4x/api.html#req
+
 */
 
 /* GET home page. */
@@ -111,12 +114,28 @@ router.post('/register', function(req, res, next) {
 });
 
 
+
+
+
+/* Search */
+
+router.get('/search', function (req,res,next){
+  var query = req.bod
+})
+
+
+
+
+
+
+
+
+
 /* Logout */
 router.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');
 });
-
 
 
 
