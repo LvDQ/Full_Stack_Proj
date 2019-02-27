@@ -6,6 +6,8 @@ var session = require('client-sessions');
 
 var User = require('../my_models/user_class');// user defined class type
 
+var rpc_client = require('../rpc_client/rpc_client')
+
 Title = "Ky's Estate personal project"
 
 
@@ -29,6 +31,7 @@ router.get('/',function(req,res,next){
 
 
 req reference: https://expressjs.com/zh-cn/4x/api.html#req
+https://expressjs.com/en/api.html
 
 */
 
@@ -40,7 +43,7 @@ router.get('/', function(req, res, next) {
 
 /* GET Login page*/
 
-router. get('/login',function(req,res, next){
+router.get('/login',function(req,res, next){
 	res.render('login',{ title: Title });
 });
 
@@ -56,7 +59,7 @@ router.post('/login', function(req, res, next) {
     // User not found.
     if (users.length == 0) {
       res.render('login', {
-        title : TITLE,
+        title : Title,
         message : "User not found. Or <a href='/register'>rigester</a>"
       });
     } else {
@@ -78,7 +81,7 @@ router.post('/login', function(req, res, next) {
 
 /* Register page */
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: TITLE });
+  res.render('register', { title: Title });
 });
 
 /* Register submit */
@@ -94,7 +97,7 @@ router.post('/register', function(req, res, next) {
     if (users.length > 0) {
       console.log("User found for: " + email);
       res.render('register', {
-        title: TITLE,
+        title: Title,
         message: 'Email is already used. Please pick a new one. Or <a href="/login">Login</a>'
       });
     } else {
@@ -120,7 +123,20 @@ router.post('/register', function(req, res, next) {
 /* Search */
 
 router.get('/search', function (req,res,next){
-  var query = req.bod
+  var query = req.query.search_text;
+  console.log("search text: " + query);
+
+  rpc_client.searchArea(query,function(response){
+    if(response == undefined || response === null){
+      console.log("No results");
+    } else{
+      res.render('search_result',{
+        title: Title,
+        query: query,
+        results: response
+      });
+    }
+  });
 })
 
 

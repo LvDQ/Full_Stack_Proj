@@ -18,12 +18,25 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+
+// Connect to database.
+mongoose.connect('mongodb://localhost:27017/estate_db');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
-//app.use is to REGISTER middle middleware
+// Register session Midleware.
+app.use(session({
+  cookieName: 'session',
+  secret: 'random_string',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000
+}));
+
+
+//app.use is to REGISTER middle middleware !!!!!!!!!!!!!!!!!!!! Initial order Affects!!!!!!
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +45,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
