@@ -13,6 +13,10 @@ var mongoose = require('mongoose');
 var session = require('client-sessions');
 
 
+var favicon = require('serve-favicon');
+var bodyParser = require('body-parser');
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 

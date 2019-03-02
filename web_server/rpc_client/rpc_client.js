@@ -36,8 +36,48 @@ function search_area(query,callback){
 	})
 }
 
+// Search property using address and city/state or zip code.
+function searchByAddress(address, citystatezip, callback) {
+    client.request('searchByAddress', [address, citystatezip], function(err, error, response) {
+        if (err) throw err;
+        console.log(response);
+        callback(response);
+    });
+}
+
+// Search properties using zip code.
+function searchAreaByZip(zipcode, callback) {
+    client.request('searchAreaByZip', [zipcode], function(err, error, response) {
+        if (err) throw err;
+        console.log(response);
+        callback(response);
+    });
+}
+
+// Search properties using city and state.
+function searchAreaByCityState(city, state, callback) {
+    client.request('searchAreaByCityState', [city, state], function(err, error, response) {
+        if (err) throw err;
+        console.log(response);
+        callback(response);
+    });
+}
+
+// Get property details by Zillow Property ID (zpid).
+function getDetailsByZpid(zpid, callback) {
+    client.request('getDetailsByZpid', [zpid], function(err, error, response) {
+        if (err) throw err;
+        console.log(response);
+        callback(response);
+    });
+}
+
 
 module.exports = {
-	add: add,
-	search_area: search_area
-}
+    add : add,
+    searchByAddress : searchByAddress,
+    searchAreaByZip : searchAreaByZip,
+    searchAreaByCityState : searchAreaByCityState,
+    search_area: search_area
+    getDetailsByZpid : getDetailsByZpid
+};
