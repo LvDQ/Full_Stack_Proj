@@ -1,6 +1,10 @@
 # Full_Stack_Proj
 
-Estate Estimation by using Zillow datasets API
+Estate Estimation by using Zillow datasets
+
+### High Level Design
+
+![image](./简单架构.jpg)
 
 
 ### Environment:
