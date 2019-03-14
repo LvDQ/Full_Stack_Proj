@@ -2,10 +2,16 @@
 
 Estate Estimation by using Zillow datasets
 
-### High Level Design
+### High Level Design:
 
 ![image](./简单架构.jpg)
 
+
+### Next Step:
+
+![image](./next_step.jpg)
+
+Color blue means ongoing or future optimization
 
 ### Environment:
 
