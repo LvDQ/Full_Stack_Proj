@@ -6,10 +6,19 @@ from bson.json_util import dumps
 # import common package to parent directory
 import os
 import sys
-
+"""
 sys.path.append(os.path.join(os.path.dirname(__file__),'..','common'))
 
 import mongodb_client
+
+this is moved to operation.py
+"""
+import operations
+
+sys.path.append(os.path.joinos.path.dirname((__file__),'..','data_fetcher'))
+
+import zillow_api_client
+import zillow_web_scraper_client
 
 
 # Backend Server Code Below 
@@ -37,7 +46,7 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
         return a + b
 
 
-
+"""
     @pyjsonrpc.rpcmethod
     def searchArea(self, query):
     	res = []
@@ -54,7 +63,30 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
     		state = query.split(',')[1].strip();
     		# TODO: search in DB
     	return res
+"""
+    """Search properties by zip code"""
+    @pyjsonrpc.rpcmethod
+    def searchAreaByZip(self, zipcode):
+        print "searchAreaByZip() gets called with zipcode=[%s]" % str(zipcode)
+        return operations.searchAreaByZip(zipcode)
 
+    """Search properties by city and state"""
+    @pyjsonrpc.rpcmethod
+    def searchAreaByCityState(self, city, state):
+        print "searchAreaByCityState() gets called with city=[%s] and state=[%s]" % (city, state)
+        return operations.searchAreaByCityState(city, state)
+
+    """Search properties"""
+    @pyjsonrpc.rpcmethod
+    def searchArea(self, text):
+        print "search() gets called with text=[%s]" % text
+        return operations.searchArea(text)
+
+    """Retrieve details by zillow property ID (zpid)"""
+    @pyjsonrpc.rpcmethod
+    def getDetailsByZpid(self, zpid):
+        print "getDetailsByZillowId() gets called with zpid=[%s]" % (zpid)
+        return operations.getDetailsByZpid(zpid)
 
 # Threading HTTP-Server
 http_server = pyjsonrpc.ThreadingHttpServer(
