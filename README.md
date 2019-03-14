@@ -22,26 +22,42 @@ Color blue means ongoing or future optimization
 
 `how to install:`
 
-- using `apt-get install`: npm , node.js mongodb, 
+- using `apt-get install`: npm , node.js mongodb
 
-- using `npm`:  mongoose, client- sessions, password-hash, supervisor
+- using `npm`:  mongoose, client- sessions, password-hash, supervisor, jayson
 
 				Express: 
 				``` npm install -g express; npm install -g express-generator@4```
+				
+- using `pip`: xml, xmljson, request,pika(RabitMQ official recommendation), pyjsonrpc 
 
-### Show Appearance(Run)
+### Show Demo(Run)
 
 ```
-	supervisor ./bin/www 
+	Web_server:
+	supervisor ./bin/www  --- monitor
+	node ./bin/www
+	
+	MongoDB:
+	sudo service mongod start/stop/restart
+	
+	Backend_server:
+	python server.py
+	
+	Web_craper:
+	python data_fetcher.py
 
 ```
 
 ### Performance Test
 
-TBD...
+Apache Bench
 
+## Design:
 
-### Logics between sources:
+Showed as High level design, these are details below.
+
+### Logics between web_server:
 
 `./bin/www` is the entrance of web_server(creating) binding with localhost `port 3000`, this server require `app.js` to get into node logical level
 
@@ -72,3 +88,7 @@ app.js also sets `view engine` as `Jade`
 - matches '/register', check if there's the same username, if good, then create and save to db. then do the login step.
 
 - matches '/logout', `req.session.reset()`, then redirect to home page
+
+
+### Logics between Web_server and Backend_Server:
+
